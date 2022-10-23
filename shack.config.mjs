@@ -9,7 +9,7 @@ export default {
     rules: [
       {
         test: /\.(m|c)?(t|j)sx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|bower_components).*(?<!shack-get-routes\.js)$/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -21,6 +21,15 @@ export default {
             plugins: [
               "@babel/plugin-transform-runtime",
             ]
+          }
+        }
+      },
+      {
+        test: /shack-get-routes\.js$/,
+        use: {
+          loader: '@shack-js/auto-routes-loader',
+          options: {
+            folder: 'web/pages'
           }
         }
       },
